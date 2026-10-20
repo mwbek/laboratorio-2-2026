@@ -1,6 +1,7 @@
 package ar.edu.unlu.poo.labo2.artefactos;
 
-import ar.edu.unlu.poo.labo2.estrategias.*;
+import ar.edu.unlu.poo.labo2.estrategias.EstrategiaCompuesta;
+import ar.edu.unlu.poo.labo2.estrategias.EstrategiaDeMejora;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

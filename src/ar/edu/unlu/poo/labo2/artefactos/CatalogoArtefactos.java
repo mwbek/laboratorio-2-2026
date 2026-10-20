@@ -1,16 +1,29 @@
 package ar.edu.unlu.poo.labo2.artefactos;
 
+import ar.edu.unlu.poo.labo2.estrategias.EstrategiaDeMejora;
+
 import java.util.*;
 
 public class CatalogoArtefactos {
 
     private final Set<Artefacto> artefactos;
 
+    //Aplico inversion de contol
+    private final EstrategiaDeMejora estrategiaDeMejora;
+
     // Constructor por defecto (Compatibilidad Labo 1)
     public CatalogoArtefactos() {
+
         this.artefactos = new HashSet<>();
+        this.estrategiaDeMejora = null;
     }
 
+    public CatalogoArtefactos(EstrategiaDeMejora estrategiaMejora) {
+
+        this.artefactos = new HashSet<>();
+        if(estrategiaMejora == null) throw new IllegalArgumentException("Estrategia de mejora no puede ser NULL");
+        this.estrategiaDeMejora = estrategiaMejora;
+    }
     // =========================================================================
     // Métodos del Laboratorio 1 (Colecciones)
     // =========================================================================
@@ -57,4 +70,16 @@ public class CatalogoArtefactos {
         }
         return max;
     }
+
+//Debe recorrer todos los artefactos del catálogo y delegar la mejora en la estrategia inyectada.
+    public void aplicarMejoras()
+    {
+        if(estrategiaDeMejora == null) throw new IllegalArgumentException("Estrategia de mejora no puede ser null");
+        for(Artefacto artefacto : artefactos) {
+            estrategiaDeMejora.mejorar(artefacto);
+        }
+    }
+
+
+
 }
